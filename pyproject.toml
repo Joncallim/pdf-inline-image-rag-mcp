@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdf-inline-image-rag-mcp"
+version = "0.1.0"
+description = "MCP server for building searchable PDF text databases with inline image extraction and exact image coordinates."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+  { name = "Jonathan Lim" }
+]
+keywords = ["mcp", "pdf", "rag", "sqlite", "pymupdf", "image-extraction"]
+dependencies = [
+  "mcp>=1.2.0",
+  "pymupdf>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Joncallim/pdf-inline-image-rag-mcp"
+Repository = "https://github.com/Joncallim/pdf-inline-image-rag-mcp"
+
+[project.scripts]
+pdf-inline-image-rag-mcp = "pdf_inline_image_rag_mcp.server:main"
+pdf-inline-image-rag = "pdf_inline_image_rag_mcp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdf_inline_image_rag_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
