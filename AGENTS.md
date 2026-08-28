@@ -6,7 +6,10 @@ This Python package provides an MCP server and CLI that builds local SQLite full
 
 - Extract actual PDF image blocks, not whole-page screenshots by default. Preserve page number, image index, dimensions, file path, and exact PDF bounding box in the stored record and text placeholder.
 - Keep extraction factual: the package does not invent OCR or captions. Save externally produced captions only through the existing caption path so full-text search stays synchronized.
-- Keep CLI and MCP tool behavior aligned for build, search, inspect, page/image retrieval, and caption persistence.
+- Keep CLI and MCP behavior aligned for their shared operations: build, search,
+  page retrieval, and database inspection. Direct image retrieval, uncaptioned-
+  image listing, and caption persistence are MCP-only operations; do not expand
+  the CLI to match them unless the user explicitly requests that product change.
 - Treat PDFs, extracted images, SQLite databases, captions, and output paths as potentially sensitive user data. Do not commit them, log their contents unnecessarily, or expose files outside the requested output/database scope.
 - Validate paths and replacement behavior before filesystem writes. Do not weaken explicit `--replace` semantics or allow a request to escape the intended output/database roots.
 
